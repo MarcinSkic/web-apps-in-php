@@ -21,7 +21,7 @@
             echo "Nie podano nazwiska <br />";
         }
 
-        $ageRaw = $_REQUEST['age'];
+        $ageRaw = @$_REQUEST['age'];
         if(valueValidation($ageRaw)){
             $age = htmlspecialchars(trim($ageRaw));
             echo "Wiek: $age <br />";
@@ -29,7 +29,7 @@
             echo "Nie podano wieku <br />";
         }
 
-        $countryRaw = $_REQUEST['country'];
+        $countryRaw = @$_REQUEST['country'];
         if(valueValidation(($countryRaw))){
             $country = htmlspecialchars(trim($countryRaw));
             echo "Kraj: $country <br />";
@@ -37,7 +37,7 @@
             echo "Nie podano kraju <br />";
         }
 
-        $emailRaw = $_REQUEST['email'];
+        $emailRaw = @$_REQUEST['email'];
         if(valueValidation(($emailRaw))){
             $email = htmlspecialchars(trim($emailRaw));
             echo "Email: $email <br />";
