@@ -1,6 +1,11 @@
 <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     if (isset($_POST['zapisz']) && $_POST['zapisz'] == 'Zapisz' && !isset($_GET['pic'])) {
         if (is_uploaded_file($_FILES['zdjecie']['tmp_name'])) {
+
             $typ = $_FILES['zdjecie']['type'];
 
             if ($typ === 'image/jpeg') {
@@ -8,7 +13,7 @@
                 $link = $_FILES['zdjecie']['name'];
                 $random = uniqid('img_'); //wygenerowanie losowej wartości
                 $zdj = $random . '.jpg';
-                copy($link, './' . $zdj); //utworzenie kopii zdjęcia
+                copy('./photos/'.$link, './' . $zdj); //utworzenie kopii zdjęcia
                 list($width, $height) = getimagesize($zdj); //pobranie rozmiarów obrazu
                 $wys = $_POST['wys']; //wysokość preferowana przez użytkownika
                 $szer = $_POST['szer']; //szerokość preferowana przez użytkownika
@@ -29,7 +34,7 @@
                 imagecopyresampled($nowe, $obraz, 0, 0, 0, 0,
                 $newW, $newH, $width, $height);
                 imagejpeg($nowe, './mini/' . $link, 100);
-                echo "nowe=/mini-$link <br>";
+                echo "nowe=/mini/$link <br>";
                 imagedestroy($nowe);
                 imagedestroy($obraz);
                 unlink($zdj);
@@ -67,5 +72,4 @@
         echo "<br/>Liczba plików w galerii $counter<br/>";
         echo '<a href="photos.html">Powrót</a>';
     }
-    echo "alive"; 
 ?>
