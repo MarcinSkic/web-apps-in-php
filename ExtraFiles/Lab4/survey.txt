@@ -1,0 +1,16 @@
+HTML=7
+CSS=3
+
+Java=7
+
+C#=7
+XML=16
+
+PHP=7
+
+JavaScript=3
+
+C=4
+
+CPP=4
+
