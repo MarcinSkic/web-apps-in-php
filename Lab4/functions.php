@@ -18,7 +18,7 @@
                 ]
             ],
             'country' => FILTER_SANITIZE_SPECIAL_CHARS,
-            'email' => FILTER_SANITIZE_EMAIL,
+            'email' => FILTER_VALIDATE_EMAIL,
             'languages' => [
                 'filter' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
                 'flags' => FILTER_REQUIRE_ARRAY
@@ -30,7 +30,7 @@
 
         $errors = "";
         foreach ($data as $key => $val){
-            if($val === false or $val === NULL){
+            if($val === false or $val === NULL or $val === ""){
                 $errors .= "$key ";
             }
         }

@@ -54,7 +54,7 @@
                     if(str_contains($value,"=")){
                         $exploded = explode("=",$value);
                         $key = $exploded[0];
-                        $value = $exploded[1];
+                        $value = intval($exploded[1]);
                         $dict[$key] = $value;
                     }       
                 }
@@ -96,8 +96,8 @@
         
                 echo "<p>Zagłosowano na $newVotes</p>";
                 //Show weird look
-                //echo "<p>Zapisano: </p><br/>";
-                //echo nl2br($data);
+                echo "<p>Zapisano: </p><br/>";
+                echo nl2br($data);
                 
             }
 
