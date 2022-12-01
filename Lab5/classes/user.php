@@ -20,7 +20,24 @@ class User {
         $this->date = date("Y-m-d");
     }
 
-    public static function showAllUsers($filePath){
+    public static function getExistingNicknames(){
+        $jsonUsers = json_decode(file_get_contents("Data/users.json"));
+        $xmlUsers = simplexml_load_file("Data/users.xml");
+
+        $uniqueNicknames = []; 
+
+        foreach($xmlUsers as $user){
+            $uniqueNicknames[(string)$user->userName] = true;   //Create imitation of set, only keys will be used
+        }
+
+        foreach($jsonUsers as $user){
+            $uniqueNicknames[$user->userName] = true;
+        }
+
+        return $uniqueNicknames;
+    }
+
+    public static function showAllUsersFromJSON($filePath){
         $tab = json_decode(file_get_contents($filePath));
         foreach ($tab as $val){
             echo "<p>".$val->userName." ".$val->fullName." ".$val->date."</p>";
@@ -30,14 +47,42 @@ class User {
     public function toArray(){
         $arr=[
             "userName" => $this->userName,
+            "passwd" => $this->passwd,
             "fullName" => $this->fullName,
-            "email" => $this->email
+            "email" => $this->email,
+            "date" => $this->date,
+            "status" => $this->status
             ];
         return $arr;
     }
 
-    public function save($filePath){
+    public function saveToFileJSON($filePath){
+        $tab = json_decode(file_get_contents($filePath));
+        array_push($tab,$this->toArray());
+        file_put_contents($filePath,json_encode($tab));
+    }
 
+    public static function showAllUsersFromXML(){
+        $allUsers = simplexml_load_file("Data/users.xml");
+        echo "<ul>";
+        foreach($allUsers as $user){
+            echo "<li>".$user->userName." ".$user->fullName." ".$user->date."</li>";
+        }
+        echo "</ul>";
+    }
+
+    public function saveToFileXML(){
+        $xml = simplexml_load_file("Data/users.xml");
+        $xmlCopy = $xml->addChild("user");
+
+        $xmlCopy->addChild("userName",$this->userName);
+        $xmlCopy->addChild("passwd",$this->passwd);
+        $xmlCopy->addChild("fullName",$this->fullName);
+        $xmlCopy->addChild("email",$this->email);
+        $xmlCopy->addChild("date",$this->date);
+        $xmlCopy->addChild("status",$this->status);
+
+        $xml->asXML("Data/users.xml");
     }
 
     public function show() {

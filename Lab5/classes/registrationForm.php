@@ -39,6 +39,9 @@ class RegistrationForm {
 
         $errors = "";
         foreach($data as $key => $value){
+            if($key == 'userName'){
+                User::getExistingNicknames();
+            }
             if($value === NULL or $value === false){
                 $errors .= "$key ";
             }

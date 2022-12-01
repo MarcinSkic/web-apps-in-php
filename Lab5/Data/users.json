@@ -1,16 +1,1 @@
-[
-    { "userName" : "admin",
-     "passwd" : "admin",
-     "fullName" : "Administrator",
-     "email" : "admin@gmail.com",
-     "date" : "2018-09-10",
-     "status" : 2
-    },
-    { "userName" : "kubus",
-     "passwd" : "kubus",
-     "fullName" : "Kubuś Puchatek",
-     "email" : "kubus@stumilowylas.com",
-     "date" : "2019-10-30",
-     "status" : 1
-    }
-]
+[{"userName":"admin","passwd":"admin","fullName":"Administrator","email":"admin@gmail.com","date":"2018-09-10","status":2},{"userName":"kubus","passwd":"kubus","fullName":"Kubu\u015b Puchatek","email":"kubus@stumilowylas.com","date":"2019-10-30","status":1},{"userName":"MartinDraft","passwd":"$2y$10$Nwyo4.f.6KiCmayT.HRlTu1urMAaE8Xr4M0I.06ToJ9xp2rlbi1EO","fullName":"Marcin Skic","email":"martinplgames@gmail.com","date":"2022-12-01","status":1},{"userName":"Kubenos","passwd":"$2y$10$fKPesHOEiaNaNAsekSxFqeq8OcB7UyXMOOgRb4vI9nQN4i15XMHWK","fullName":"Kuba Turowski","email":"kubus@mail.pl","date":"2022-12-01","status":1},{"userName":"Kubenos","passwd":"$2y$10$lr4FSHAHesKPYcBFpQyXweyWrPzTA18W93rk6it8\/QebFEQGRcRXy","fullName":"Kuba Turowski","email":"kubus@mail.pl","date":"2022-12-01","status":1},{"userName":"Kubenos","passwd":"$2y$10$jpylnmP46.wTAzUzvbwgruESu1lZ4A\/3ntq4G19lhUIrMfqKF3g4G","fullName":"Kuba Turowski","email":"kubus@mail.pl","date":"2022-12-01","status":1},{"userName":"Kubenos","passwd":"$2y$10$p5HP1WntsYtidch0bJ9\/wuulEDsugzOVoXEYTn3IHiSu.PDMyA4jW","fullName":"Kuba Turowski","email":"kubus@mail.pl","date":"2022-12-01","status":1},{"userName":"Kubenos","passwd":"$2y$10$zkr.luspJWvfbSKeNKt7OewaLCNmvszIM9M3bS0YGk3PCVw9N3Y9S","fullName":"Kuba Turowski","email":"kubus@mail.pl","date":"2022-12-01","status":1},{"userName":"Kubenos","passwd":"$2y$10$wUzJ7xcA.CeBiblWZZkwKOW\/OMwaVNUgBLE92\/xAcwny23LOWOy8O","fullName":"Kuba Turowski","email":"kubus@mail.pl","date":"2022-12-01","status":1},{"userName":"Kubenos","passwd":"$2y$10$KNj8loSf7uU.QKAvaWRzke3jJKpnwf40AFyifmNyGGPw\/jMqtGpHq","fullName":"Kuba Turowski","email":"kubus@mail.pl","date":"2022-12-01","status":1},{"userName":"Kubenos","passwd":"$2y$10$Nv1L3dD1xayD8SqQho.G\/O7lU0ifM0eBqsZKYhYR9OG86sBUXkY9G","fullName":"Kuba Turowski","email":"kubus@mail.pl","date":"2022-12-01","status":1},{"userName":"Kubenos","passwd":"$2y$10$Sk3vs3o3lh1q5JkeM8Kq3O77VJdRovb3AiJ4HFZOhtyWf.\/A84PbG","fullName":"Kuba Turowski","email":"kubus@mail.pl","date":"2022-12-01","status":1}]

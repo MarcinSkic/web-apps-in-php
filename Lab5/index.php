@@ -20,6 +20,14 @@
             } else {
                 echo "<p>Zarejestrowano</p>";
                 $user->show();
+                echo "<p>Dotychczas zarejestrowani w pliku JSON:</p>";
+                User::showAllUsersFromJSON("Data/users.json");
+
+                $user->saveToFileJSON("Data/users.json");
+                $user->saveToFileXML();
+
+                echo "<p>Aktualnie zarejestrowani w pliku XML:</p>";
+                User::showAllUsersFromXML();
             }
         }
     ?>
