@@ -40,7 +40,11 @@ class RegistrationForm {
         $errors = "";
         foreach($data as $key => $value){
             if($key == 'userName'){
-                User::getExistingNicknames();
+                $existingNickames = User::getExistingNicknames();
+                if(array_key_exists($value,$existingNickames)){
+                    $errors .= "Istnieje już użytkownik o nicku: $value ";
+                    break;
+                }
             }
             if($value === NULL or $value === false){
                 $errors .= "$key ";
