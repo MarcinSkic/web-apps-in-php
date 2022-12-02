@@ -38,5 +38,45 @@
         "email": "dostoj@mail.eu",
         "date": "2022-12-02",
         "status": 1
+    },
+    {
+        "userName": "Martin",
+        "passwd": "$2y$10$\/5xI.\/10vFJNv\/OjoXnZ2edYFZ.6YDaDsPbYtCxhOTKbHH39.HMKq",
+        "fullName": "Marcin Skic",
+        "email": "test@test.pl",
+        "date": "2022-12-02",
+        "status": 1
+    },
+    {
+        "userName": "Martin2",
+        "passwd": "$2y$10$P0z6W9G0C390obW8GFR2puiiv.zptEW8fj5zImUeDkxr9orEteZGm",
+        "fullName": "Marcin Jakis",
+        "email": "mail@mail.com",
+        "date": "2022-12-02",
+        "status": 1
+    },
+    {
+        "userName": "Martin2",
+        "passwd": "$2y$10$52IycM4agKvgmmBHXRrej.tN5Hsi14MFFc0N79LF06Y6iW5FYhhKO",
+        "fullName": "Marcin Jakis",
+        "email": "mail@mail.com",
+        "date": "2022-12-02",
+        "status": 1
+    },
+    {
+        "userName": "NowyUser",
+        "passwd": "$2y$10$gSOAPhU1GC\/oQP5MhwuT1uwelivXJAaRpKgdQ6y44d6iM.odDJ6.K",
+        "fullName": "Imie Nazwisko",
+        "email": "mail@mail.pl",
+        "date": "2022-12-02",
+        "status": 1
+    },
+    {
+        "userName": "Nazwa",
+        "passwd": "$2y$10$8EqrsRocCRiwvW4Jz97o5eiTCXi2iBxGK6qCIhv4bu80ml5a4svLK",
+        "fullName": "Mateusz Marek",
+        "email": "mail@mail.pl",
+        "date": "2022-12-02",
+        "status": 1
     }
 ]

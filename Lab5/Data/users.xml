@@ -24,4 +24,4 @@
         <date>2022-12-01</date>
         <status>1</status>
     </user>
-</users>
+<user><userName>NowyUser</userName><passwd>$2y$10$gSOAPhU1GC/oQP5MhwuT1uwelivXJAaRpKgdQ6y44d6iM.odDJ6.K</passwd><fullName>Imie Nazwisko</fullName><email>mail@mail.pl</email><date>2022-12-02</date><status>1</status></user><user><userName>Nazwa</userName><passwd>$2y$10$8EqrsRocCRiwvW4Jz97o5eiTCXi2iBxGK6qCIhv4bu80ml5a4svLK</passwd><fullName>Mateusz Marek</fullName><email>mail@mail.pl</email><date>2022-12-02</date><status>1</status></user></users>
