@@ -1,13 +1,34 @@
 <?php
 class Database {
     private $mysqli;
-    public function __construct($server, $user, $pass, $table)
+    public function __construct($servers, $user, $pass, $table)
     {
-        $this->mysqli = new mysqli($server,$user,$pass,$table);
-        if($this->mysqli->connect_errno){
-            printf("Nie udało się połączenie z serwerem: %s\n",$this->mysqli->connect_error);
+        $connected = false;
+        $connectionErrors = "Nie udało się połączenie z serwerami:\n";
+        foreach($servers as $server){
+            try{
+                $this->mysqli = new mysqli($server,$user,$pass,$table);
+            } catch(mysqli_sql_exception $e){
+                $connectionErrors .= "Nieudane połączenie $server\n".$e;
+                continue;
+            }
+            
+            $connected = true;
+            break;
+        }
+
+        if(!$connected){
+            $connectionErrors = preg_replace("/$pass/","*******",$connectionErrors);
+            echo nl2br($connectionErrors);
             exit();
         }
+
+        if($this->mysqli->connect_errno){
+            printf("Nie udało się połączenie z serwerem: $server%s\n".$this->mysqli->connect_error);
+            exit();
+        }
+
+        
         if ($this->mysqli->set_charset("utf8")) {
             //udało sie zmienić kodowanie
         } else {

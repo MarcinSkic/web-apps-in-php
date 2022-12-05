@@ -48,8 +48,9 @@
     <?php
         include_once("classes/database.php");
         include_once("functions.php");
+        include_once("passwords.php");
 
-        $bd = new Database("localhost:3306","root","","clients");
+        $bd = new Database(["localhost:3306","192.168.1.6:3306"],"root",$mysqlPass,"clients");
 
         echo $bd->select("select Nazwisko,Zamowienie from clients", ["Nazwisko","Zamowienie"]); 
     ?>
