@@ -24,7 +24,7 @@ class Database {
         }
 
         if($this->mysqli->connect_errno){
-            printf("Nie udało się połączenie z serwerem: $server%s\n".$this->mysqli->connect_error);
+            echo "Nie udało się połączenie z serwerem: $server\n".$this->mysqli->connect_error;
             exit();
         }
 
@@ -41,12 +41,20 @@ class Database {
         $this->mysqli->close();
     }
 
+    public function getSelect(string $sql){
+        if($queryResult = $this->mysqli->query($sql)){
+            return $queryResult;
+        }
+        return false;
+    }
+
     public function select($sql, $fields) {
         $text = "";
         if ($queryResult = $this->mysqli->query($sql)) {
             $fieldsAmount = count($fields);
             $rowsAmount = $queryResult->num_rows;
 
+            $queryResult->
             $text.="<table><tbody>";
             while ($queryRow = $queryResult->fetch_object()) {
                 $text.="<tr>";
@@ -63,8 +71,15 @@ class Database {
         return $text;
     }
 
-    public function insert($sql) {
-        if( $this->mysqli->query($sql)) return true; else return false;
+    /**
+     * Method for executing any sql command on database
+     * 
+     * @param string $sql SQL command
+     * 
+     * @return mixed Result of command or feedback if everything worked
+     */
+    public function executeSQL(string $sql) {
+        return $this->mysqli->query($sql);
     }
 
     public function getMysqli() {

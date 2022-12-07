@@ -1,9 +1,4 @@
 <?php
-    function add(){
-        echo "<h3>Dodawanie do pliku: </h3>";
-        validate();
-    }
-
     function validate(){
         $args = [
             'surname' => [
@@ -36,55 +31,15 @@
         }
 
         if($errors === ""){
-            toFile($data);
+            return $data;
         } else {
             echo "<br/>Nie poprawne dane: $errors";
+            exit(0);
         }
     }
 
-    function toFile($filteredData){
-        $data = "";
-        foreach ($filteredData as $key=>$value){
-            if($key=='languages'){
-                foreach($value as $key=>$value){
-                    $data .= $value.",";
-                }
-                continue;
-            }
-            if($key == 'submit') continue;
-
-            $data .= $value." "; 
-        }
-        $data .= PHP_EOL;
-
-        $d_root = $_SERVER['DOCUMENT_ROOT'];
-        $file = fopen("$d_root/../ExtraFiles/Lab3/data.txt","a+");
-
-        fwrite($file,$data);
-
-        fclose($file);
-
-        echo "<p>Zapisano: <br/> $data </p>";
-    }
-
-    function show(){
-        $d_root = $_SERVER['DOCUMENT_ROOT'];
-        $arrayFromFile = file("$d_root/../ExtraFiles/Lab3/data.txt");
-
-        foreach($arrayFromFile as $value){
-            print("$value<br/>");
-        }
-    }
-
-    function showWithOrder($order){
-        $d_root = $_SERVER['DOCUMENT_ROOT'];
-        $arrayFromFile = file("$d_root/../ExtraFiles/Lab3/data.txt");
-
-        foreach($arrayFromFile as $value){
-            if(str_contains($value,$order)){
-                print("$value<br/>");
-            }
-        }
+    function showSelectResult(){
+        
     }
 
     function showStatistics(){
