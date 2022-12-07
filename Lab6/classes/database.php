@@ -41,9 +41,9 @@ class Database {
         $this->mysqli->close();
     }
 
-    public function getSelect(string $sql){
+    public function getSelectArray(string $sql){
         if($queryResult = $this->mysqli->query($sql)){
-            return $queryResult;
+            return $queryResult->fetch_all(MYSQLI_ASSOC);
         }
         return false;
     }
@@ -54,7 +54,7 @@ class Database {
             $fieldsAmount = count($fields);
             $rowsAmount = $queryResult->num_rows;
 
-            $queryResult->
+            //$queryResult->
             $text.="<table><tbody>";
             while ($queryRow = $queryResult->fetch_object()) {
                 $text.="<tr>";

@@ -67,7 +67,7 @@
                     }
                     break;
                 case "Pokaż":
-                    echo $bd->select("select Nazwisko,Zamowienie from clients", ["Nazwisko","Zamowienie", "Lups"]);
+                    showSelectTable($bd->getSelectArray("select Nazwisko,Zamowienie,Wiek from clients"));
                     break;
                 case "PHP":
                     echo $bd->select("select Nazwisko,Zamowienie from clients where Zamowienie regexp 'PHP'", ["Nazwisko","Zamowienie"]);
