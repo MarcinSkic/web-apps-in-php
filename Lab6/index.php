@@ -16,7 +16,7 @@
                 <option value="Polska">Polska</option>
                 <option value="Niemcy">Niemcy</option>
                 <option value="Wielka Brytania">Wielka Brytania</option>
-                <option value="Francja">Francja</option>
+                <option value="Czechy">Czechy</option>
             </select></div>
             <div class="info-row" id="email-cont"><label for="email">Adres e-mail:</label> <input type="email" name="email" id="email"></div>
         </div>
@@ -70,15 +70,19 @@
                     showSelectTable($bd->getSelectArray("select Nazwisko,Zamowienie,Wiek from clients"));
                     break;
                 case "PHP":
-                    echo $bd->select("select Nazwisko,Zamowienie from clients where Zamowienie regexp 'PHP'", ["Nazwisko","Zamowienie"]);
+                    showSelectTable($bd->getSelectArray("select Nazwisko,Zamowienie from clients where Zamowienie regexp 'PHP'"));
                     break;
                 case "CPP":
-                    echo $bd->select("select Nazwisko,Zamowienie from clients where Zamowienie regexp 'CPP'", ["Nazwisko","Zamowienie"]);
+                    showSelectTable($bd->getSelectArray("select Nazwisko,Zamowienie from clients where Zamowienie regexp 'CPP'"));
                     break;
                 case "Java":
-                    echo $bd->select("select Nazwisko,Zamowienie from clients where Zamowienie regexp 'Java'", ["Nazwisko","Zamowienie"]);
+                    showSelectTable($bd->getSelectArray("select Nazwisko,Zamowienie from clients where Zamowienie regexp 'Java'"));
                     break;
                 case "Stats":
+
+                    echo "<p>Liczba wszystkich zamówień: ".count($bd->getSelectArray("select Nazwisko from clients"))."</p>";
+                    echo "<p>Liczba zamówień wiek < 18: ".count($bd->getSelectArray("select Nazwisko from clients where Wiek < 18"))."</p>";
+                    echo "<p>Liczba zamówień wiek > 49: ".count($bd->getSelectArray("select Nazwisko from clients where Wiek > 49"))."</p>";
                     
                     break;
             }
