@@ -9,11 +9,6 @@
 <body>
     <?php
         session_start();
-        $_SESSION['userName'] = 'kubus';
-        $_SESSION['fullName'] = 'Kubus Puchatek';
-        $_SESSION['email'] = 'kubus@stumilowylas.pl';
-        $_SESSION['status'] = 'ADMIN';
-
         echo "Sesja:</br>";
         echo "id = ".session_id()."</br>";
         foreach($_SESSION as $key => $value){
@@ -25,8 +20,11 @@
             echo nl2br("$key = $value\n");
         }
 
+        if ( isset($_COOKIE[session_name()]) ) {
+            setcookie(session_name(),'', time() - 42000, '/');
+        }
+        session_destroy();
     ?>
-    <a href="test2.php">Test2.php</a>
+    <a href="test1.php">Test1.php</a>
 </body>
 </html>
-
