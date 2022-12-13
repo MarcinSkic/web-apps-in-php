@@ -12,7 +12,7 @@
         include_once 'classes/registrationForm.php';
         require_once 'classes/database.php';
         require_once 'functions.php';
-        require_once '../passwords.php';
+        require_once '../universal/passwords.php';
 
         $rf = new RegistrationForm();
         $db = new Database(["localhost:3306","192.168.1.6:3306"],"root",$mysqlPass,"clients");
