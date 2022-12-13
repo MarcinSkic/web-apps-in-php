@@ -8,15 +8,15 @@
 </head>
 <body>
     <h1>Formularz zamówienia</h1>
-    <form action="./form.php" method="post">
+    <form action="./index.php" method="post">
         <div class="basic-info">
             <div class="info-row"  id="surname-cont"><label for="surname">Nazwisko:</label> <input type="text" name="surname" id="surname"/> </div>
             <div class="info-row" id="age-cont"><label for="age">Wiek:</label><input type="number" name="age" id="age"/></div>
             <div class="info-row"><label for="country" >Państwo:</label> <select name="country" id="country">
-                <option value="pl">Polska</option>
-                <option value="de">Niemcy</option>
-                <option value="gb">Wielka Brytania</option>
-                <option value="fr">Francja</option>
+                <option value="Polska">Polska</option>
+                <option value="Niemcy">Niemcy</option>
+                <option value="Wielka Brytania">Wielka Brytania</option>
+                <option value="Czechy">Czechy</option>
             </select></div>
             <div class="info-row" id="email-cont"><label for="email">Adres e-mail:</label> <input type="email" name="email" id="email"></div>
         </div>
@@ -32,9 +32,9 @@
         </div>
         <h4>Sposób zapłaty:</h4>
         <div class="buttons" id="payment-cont">
-            <input type="radio" name="payment" value="eu" id="eu" /> <label for="eu">eurocard</label>
-            <input type="radio" name="payment" value="visa" id="visa" /> <label for="visa">visa</label>
-            <input type="radio" name="payment" value="transfer" id="transfer" /> <label for="transfer">przelew bankowy</label>
+            <input type="radio" name="payment" value="Master Card" id="eu" /> <label for="eu">eurocard</label>
+            <input type="radio" name="payment" value="Visa" id="visa" /> <label for="visa">visa</label>
+            <input type="radio" name="payment" value="Przelew" id="transfer" /> <label for="transfer">przelew bankowy</label>
         </div>
         <input type="reset" value="Anuluj" />
         <input type="submit" name='submit' value="Zapisz" />
@@ -48,10 +48,47 @@
     <?php
         include_once("classes/database.php");
         include_once("functions.php");
+        require_once("passwords.php");
 
-        $bd = new Database("localhost:3306","root","","clients");
+        $bd = new Database(["localhost:3306","192.168.1.6:3306"],"root",$mysqlPass,"clients");
 
-        echo $bd->select("select Nazwisko,Zamowienie from clients", ["Nazwisko","Zamowienie"]); 
+        if(filter_input(INPUT_POST,"submit")){
+            $choice = filter_input(INPUT_POST,"submit");
+            switch($choice){
+                case "Zapisz":
+                    $data = validate();
+                    $sql = "insert into clients values (NULL,'".$data['surname']."','".$data['age']."','".
+                    $data['country']."','".$data['email']."','".implode(",",$data['languages'])."','".$data['payment']."');";
+                    
+                    if(!$bd->executeSQL($sql)){
+                        echo "Wstawienie nieudane!</br>";
+                        echo "Should be: INSERT INTO clients VALUES (NULL, 'Marcin', '21', 'Polska','mail@pollub.edu.pl', 'C#,CPP', 'Przelew');</br>";
+                        echo $sql;
+                    }
+                    break;
+                case "Pokaż":
+                    showSelectTable($bd->getSelectArray("select Nazwisko,Zamowienie,Wiek from clients"));
+                    break;
+                case "PHP":
+                    showSelectTable($bd->getSelectArray("select Nazwisko,Zamowienie from clients where Zamowienie regexp 'PHP'"));
+                    break;
+                case "CPP":
+                    showSelectTable($bd->getSelectArray("select Nazwisko,Zamowienie from clients where Zamowienie regexp 'CPP'"));
+                    break;
+                case "Java":
+                    showSelectTable($bd->getSelectArray("select Nazwisko,Zamowienie from clients where Zamowienie regexp 'Java'"));
+                    break;
+                case "Stats":
+
+                    echo "<p>Liczba wszystkich zamówień: ".count($bd->getSelectArray("select Nazwisko from clients"))."</p>";
+                    echo "<p>Liczba zamówień wiek < 18: ".count($bd->getSelectArray("select Nazwisko from clients where Wiek < 18"))."</p>";
+                    echo "<p>Liczba zamówień wiek > 49: ".count($bd->getSelectArray("select Nazwisko from clients where Wiek > 49"))."</p>";
+                    
+                    break;
+            }
+        }
+
+         
     ?>
 </body>
 </html>

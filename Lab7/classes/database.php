@@ -63,32 +63,4 @@ class Database {
         return $this->mysqli;
     }
 }
-
-class DatabasePDO {
-    private $dbh; //uchwyt do BD
-    public function __construct($server, $user, $pass) {
-        try { 
-            $this->dbh = new PDO($server, $user, $pass,[PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"]); 
-        }
-        catch (PDOException $e) {
-        
-            print "Error!: " . $e->getMessage() . "<br/>"; die();
-        }
-    } 
-
-    function __destruct() {
-        $this->dbh=null;
-    }
-
-    public function getSelectArray(string $sql){
-        if($queryResult = $this->dbh->query($sql)){
-            return $queryResult->fetchAll();
-        }
-        return false;
-    }
-
-    public function executeSQL(string $sql) {
-        return $this->mysqli->query($sql);
-    }
-}
 ?>
