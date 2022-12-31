@@ -40,14 +40,16 @@ class User {
     }
 
     public static function getUserId($login,$password,Database $db){
-        $result = $db->executeSQL("select id, passwd from users where userName = $login");
-        if($result){
-            if(password_verify($password,$result->passwd)){
-                return $result->id;
+        $result = $db->executeSQL("select id, passwd from users where userName = '$login'");
+        if($obj = $result->fetch_object()){
+            if(password_verify($password,$obj->passwd)){
+                return $obj->id;
             } else {
                 echo "Niepoprawne hasło</br>";
             }
-        } 
+        } else {
+            echo "Nie ma użytkownika o takim loginie: $login";
+        }
         return false;
         
     }

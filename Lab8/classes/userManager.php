@@ -10,7 +10,7 @@ class UserManager {
         <form action="./loginProcess.php" method="POST">
             <label for="login">Login: </label><input type="text" id="login" name="login"><br>
             <label for="password">Hasło: </label><input type="password" id="password" name="password"><br>
-            <input type="submit" value="Zaloguj">
+            <input type="submit" name="submit" value="Zaloguj">
             <input type="reset" value="Anuluj">
         </form>
         <?php
@@ -43,7 +43,7 @@ class UserManager {
         }
     }
 
-    public function login($db){
+    public function login(Database $db){
         $data = $this->getValidatedLoginInput();
         if(!$data){
             return;
@@ -52,9 +52,12 @@ class UserManager {
         $id = User::getUserId($data["login"],$data["password"],$db);
 
         if($id){
-            echo "Id użytkownika: $id";
+            session_start();
+            $db->executeSQL("delete from logged_in_users where userId = $id");
+            $date = new DateTime('now');
+            $date = date("Y-m-d H:i:s");
+            $db->executeSQL("insert into logged_in_users values ('".session_id()."', '$id', '$date')");
         }
-        
     }
 }
 ?>

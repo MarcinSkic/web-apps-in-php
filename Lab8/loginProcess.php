@@ -16,9 +16,10 @@
         require_once "classes/userManager.php";
 
         $userManager = new UserManager();
+        $db = new Database(["localhost:3306","192.168.1.6:3306"],"root",$mysqlPass,"clients");
 
-        if(filter_input(INPUT_POST,'submit')){
-            
+        if(filter_input(INPUT_POST,'submit',FILTER_SANITIZE_SPECIAL_CHARS)){
+            $loginData = $userManager->login($db);
         } else {
             $userManager->loginForm();
         }
