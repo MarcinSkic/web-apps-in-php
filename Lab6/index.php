@@ -46,7 +46,7 @@
     </form>
 
     <?php
-        include_once("classes/database.php");
+        include_once("../universal/classes/database.php");
         include_once("functions.php");
         require_once("passwords.php");
 

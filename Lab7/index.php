@@ -10,7 +10,7 @@
     <?php
         include_once 'classes/user.php';
         include_once 'classes/registrationForm.php';
-        require_once 'classes/database.php';
+        require_once '../universal/classes/database.php';
         require_once 'functions.php';
         require_once '../universal/passwords.php';
 
